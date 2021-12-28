@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
+#    Updated: 2021/12/28 17:50:21 by msanjuan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+# /* ~~~~~~ SOURCES ~~~~~~ */
+SRCS_DIR = ./srcs/
+SRCS = 
+
+OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
+
+# /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
+CC = clang
+CFLAGS = -Wall -Werror -Wextra #-MMD -g
+IFLAGS:= -I ./incl
+
+# /* ~~~~~~~ OTHER ~~~~~~~ */
+NAME = philo
+RM = rm -f
+
+# /* ~~~~~~~ Colors ~~~~~~~ */
+RED:="\033[1;31m"
+GREEN:="\033[1;32m"
+PURPLE:="\033[1;35m"
+CYAN:="\033[1;36m"
+EOC:="\033[0;0m"
+
+all:	${NAME}		
+
+$(NAME): $(OBJS)
+	@echo $(CYAN) " - Compiling $@" $(RED)
+	@$(CC) $(CFLAGS) $(OBJS) $(SRCS_DIR)main.c $(IFLAGS) $(LFLAGS) -o $(NAME)
+	@echo $(GREEN) "[OK COMPILED]" $(EOC)
+
+clean:
+		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
+		@${RM} ${OBJS}
+
+fclean: clean
+		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
+		@${RM} ${OBJS} ${NAME} a.out
+
+re: 	fclean all
+
+.PHONY: all clean fclean re
