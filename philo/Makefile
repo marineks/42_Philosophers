@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2021/12/28 17:50:21 by msanjuan         ###   ########.fr        #
+#    Updated: 2021/12/29 19:06:33 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
 # /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
 CC = clang
-CFLAGS = -Wall -Werror -Wextra #-MMD -g
+CFLAGS = -Wall -Werror -Wextra -pthread#-MMD -g
 IFLAGS:= -I ./incl
 
 # /* ~~~~~~~ OTHER ~~~~~~~ */
