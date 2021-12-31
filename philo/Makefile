@@ -6,13 +6,15 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2021/12/29 19:06:33 by msanjuan         ###   ########.fr        #
+#    Updated: 2021/12/31 14:03:14 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # /* ~~~~~~ SOURCES ~~~~~~ */
 SRCS_DIR = ./srcs/
-SRCS = 
+SRCS = utils/ft_atoi.c \
+	utils/ft_calloc.c \
+	init_philos.c 
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 

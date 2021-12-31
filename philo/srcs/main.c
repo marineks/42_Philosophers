@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:51:17 by msanjuan          #+#    #+#             */
-/*   Updated: 2021/12/30 14:48:21 by msanjuan         ###   ########.fr       */
+/*   Updated: 2021/12/31 14:30:13 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ void* routine() // void * et on caste apres
 
 int	main(int ac, char **argv)
 {
-	(void)ac;
-	(void)argv;
-	pthread_t philo, philo2; // create a struc storing the info about the thread
-	
+	t_data	data;
 
-	pthread_mutex_init(&mutex, NULL);
-	if (pthread_create(&philo, NULL, &routine, NULL) != SUCCESS)
-		return (FAILURE);
-	if (pthread_create(&philo2, NULL, &routine, NULL) != SUCCESS)
-		return (FAILURE);
-	pthread_join(philo, NULL); // = the wait for threads
-	pthread_join(philo2, NULL);
-	pthread_mutex_destroy(&mutex);
-	return (0);
+	if (ac != 5 && ac != 6)
+	{
+		printf(ERRUSAGE);
+		exit(1);
+	}
+	else
+	{
+		init_philos(&data, argv);
+		create_threads(&data);
+		pthread_mutex_destroy(&mutex);
+		free(data.philo);
+	}
+	return (SUCCESS);
 }
