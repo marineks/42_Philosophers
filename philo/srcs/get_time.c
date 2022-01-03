@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 18:51:17 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/03 13:29:25 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/01/03 11:46:46 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/01/03 11:46:47 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-int	main(int ac, char **argv)
+long int	get_time(struct timeval time)
 {
-	t_data	data;
+	long int	timestamp;
 
-	if (ac != 5 && ac != 6)
-	{
-		printf("\033[48;5;57m%s\033[0;0m", ERRUSAGE);
-		// printf(ERRUSAGE);
-		exit(1);
-	}
-	else
-	{
-		init_simulation(&data, argv);
-		create_threads(&data);
-		end_simulation(&data);
-	}
-	return (SUCCESS);
+	timestamp = 0;
+	gettimeofday(&time, NULL);
+	timestamp = (time.tv_sec * 1000) + (time.tv_usec / 1000);
+	return (timestamp);
 }

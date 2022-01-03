@@ -6,13 +6,13 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 10:17:00 by msanjuan          #+#    #+#             */
-/*   Updated: 2021/12/31 14:42:40 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/03 14:43:05 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-void	init_philos(t_data *data, char **argv)
+void	init_simulation(t_data *data, char **argv)
 {
 	data->nb_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
@@ -21,30 +21,18 @@ void	init_philos(t_data *data, char **argv)
 	if (argv[5])
 		data->nb_times_must_eat = ft_atoi(argv[5]);
 	else
-		data->nb_times_must_eat = 0;
+		data->nb_times_must_eat = -1;
+	// pthread_mutex_init(&data->mutex, NULL);
 }
 
-int	create_threads(t_data *data)
+void	init_one_philo(int id)
 {
-	data->philo = ft_calloc(data->nb_of_philos, sizeof(pthread_t));
-	int			i;
-	int			j;
+	t_philo philo;
 
-	i = 0;
-	j = 0;
-	while (i < data->nb_of_philos)
-	{
-		if (pthread_create(&data->philo[i], NULL, &routine, NULL) != SUCCESS)
-			return (FAILURE);
-		printf("Thread created\n");
-		i++;
-	}
-	while (j < data->nb_of_philos)
-	{
-		if (pthread_join(data->philo[j], NULL) != SUCCESS)
-			return (FAILURE);
-		printf("Thread joined\n");
-		j++;
-	}
-	return (SUCCESS);
+	philo.id = id;
+	philo.is_dead = false;
+	philo.has_eaten = false;
+	philo.has_slept = false;
+	philo.has_thought = false;
+	// initialiser les mutex ici je pense
 }

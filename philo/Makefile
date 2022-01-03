@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2021/12/31 14:03:14 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/03 14:46:27 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,14 @@
 SRCS_DIR = ./srcs/
 SRCS = utils/ft_atoi.c \
 	utils/ft_calloc.c \
-	init_philos.c 
+	init_philos.c \
+	create_threads.c \
+	get_time.c \
+	philo_eat.c \
+	philo_sleep.c \
+	philo_think.c \
+	philo_reset.c \
+	end_simulation.c \
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
