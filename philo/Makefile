@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2022/01/03 14:46:27 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/04 17:35:30 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,15 @@ SRCS = utils/ft_atoi.c \
 	philo_sleep.c \
 	philo_think.c \
 	philo_reset.c \
+	philo_dead.c  \
 	end_simulation.c \
+	routine.c \
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
 # /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -pthread#-MMD -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g#-MMD -g
 IFLAGS:= -I ./incl
 
 # /* ~~~~~~~ OTHER ~~~~~~~ */

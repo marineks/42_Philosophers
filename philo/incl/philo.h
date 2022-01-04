@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/03 17:01:43 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/04 17:23:04 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@
 /*
 **	STRUCTURES
 */
-typedef struct s_philo
-{
-	pthread_t		philo_thread;
-	pthread_mutex_t	*forks;
-	_Bool			is_dead;
-	_Bool			has_eaten;
-	_Bool			has_slept;
-	_Bool			has_thought;
-	int				id;
-	
-}				t_philo;
-
 typedef struct s_data
 {
 	int				nb_of_philos;
@@ -51,24 +39,39 @@ typedef struct s_data
 	int				nb_times_must_eat;
 	pthread_t		*philo;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	*forks;
 	long			elapsed_time;
 
 }				t_data;
+
+typedef struct s_philo
+{
+	t_data			*data;
+	pthread_t		*thread;
+	_Bool			is_dead;
+	_Bool			has_eaten;
+	_Bool			has_slept;
+	_Bool			has_thought;
+	int				id;
+}				t_philo;
 
 /*
 **		SRCS
 */
 void		init_simulation(t_data *data, char **argv);
 int			create_threads(t_data *data);
+void		init_one_philo(t_philo *philo, pthread_t *philo_thr, int id);
 
 void		*routine();
 long int	get_time(struct timeval time);
 void		end_simulation(t_data *data);
 void		stop_simulation(t_data *data, t_philo *philo);
 
-void		make_philo_think(t_philo *philo);
+void		make_philo_think(t_philo *philo, t_data *data);
 void		make_philo_sleep(t_philo *philo, t_data *data);
+void		make_philo_eat(t_philo *philo, t_data *data);
 void		reset_status(t_philo *philo);
+
 /*
 **		UTILS
 */

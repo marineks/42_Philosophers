@@ -6,65 +6,35 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:45:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/03 17:02:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/04 17:27:34 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-void* routine(void *arg) // void * et on caste apres
-{
-	t_data 			*data;
-	t_philo			philo;
-	int				i;
-
-	i = 1;
-	data = (t_data *)arg;
-	while (philo.is_dead == false || i <= data->nb_times_must_eat)
-	{
-		if (philo.has_eaten == false)
-			make_philo_eat(&philo);
-		else if (philo.has_eaten == true)
-			make_philo_sleep(&philo, data);
-		else if (philo.has_slept == true)
-			make_philo_think(&philo);
-		else if (philo.has_eaten == true && philo.has_slept == true \
-			&& philo.has_thought == true)
-			reset_status(&philo);
-		if (philo.is_dead == true) // Probleme : prend trop de tps, à optimiser /!\.
-			stop_simulation(data, &philo);
-		if (i == data->nb_times_must_eat)
-		{
-			end_simulation(data);
-			exit(1);
-		}
-		i++;
-	}
-	return (SUCCESS);
-}
-
 int	create_threads(t_data *data)
 {
-	int			i;
-	int			j;
+	int		i;
+	t_philo philo_struct[255];
 
 	i = 1;
-	j = 1;
 	data->philo = ft_calloc(data->nb_of_philos, sizeof(pthread_t));
 	while (i <= data->nb_of_philos)
 	{
-		init_one_philo(i);
-		if (pthread_create(&data->philo[i], NULL, &routine, data) != SUCCESS)
+		printf("%d\n", i);
+		init_one_philo(philo_struct, &data->philo[i], i);
+		if (pthread_create(&data->philo[i], NULL, &routine, (philo_struct + i)) != SUCCESS)
 			return (FAILURE);
 		printf("Thread created\n");
 		i++;
 	}
-	while (j <= data->nb_of_philos)
+	i = 1;
+	while (i <= data->nb_of_philos)
 	{
-		if (pthread_join(data->philo[j], NULL) != SUCCESS)
+		if (pthread_join(data->philo[i], NULL) != SUCCESS)
 			return (FAILURE);
 		printf("Thread joined\n");
-		j++;
+		i++;
 	}
 	return (SUCCESS);
 }
