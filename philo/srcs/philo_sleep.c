@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:05:27 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/04 15:34:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/06 17:22:59 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	make_philo_sleep(t_philo *philo, t_data *data)
 {
 	struct timeval	end;
 	
-	pthread_mutex_lock(&data->mutex);
+	pthread_mutex_lock(&data->print);
 	usleep(data->time_to_sleep * 1000);
     gettimeofday(&end, NULL);
 	data->elapsed_time = get_time(end) - data->elapsed_time;
 	printf("%ld ms | %d is sleeping 😪\n", data->elapsed_time, philo->id);
 	philo->has_slept = true;
-	pthread_mutex_unlock(&data->mutex);
+	pthread_mutex_unlock(&data->print);
 }

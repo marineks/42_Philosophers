@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:45:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/04 17:27:34 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:15:22 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,21 @@
 
 int	create_threads(t_data *data)
 {
+	t_philo	philo_struct[255];
 	int		i;
-	t_philo philo_struct[255];
 
 	i = 1;
 	data->philo = ft_calloc(data->nb_of_philos, sizeof(pthread_t));
 	while (i <= data->nb_of_philos)
 	{
 		printf("%d\n", i);
-		init_one_philo(philo_struct, &data->philo[i], i);
-		if (pthread_create(&data->philo[i], NULL, &routine, (philo_struct + i)) != SUCCESS)
+		philo_struct[i].data = data;
+		init_one_philo(&philo_struct[i], data->philo[i], i);
+		if (pthread_create(&data->philo[i], NULL, &routine, &philo_struct[i]) != SUCCESS)
 			return (FAILURE);
 		printf("Thread created\n");
 		i++;
+		printf("apres incr : %d\n", i);
 	}
 	i = 1;
 	while (i <= data->nb_of_philos)

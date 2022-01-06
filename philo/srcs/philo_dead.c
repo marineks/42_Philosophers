@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/04 12:02:36 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/06 17:22:47 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	stop_simulation(t_data *data, t_philo *philo)
 {
 	struct timeval	end;
 	
-	pthread_mutex_lock(&data->mutex);
+	pthread_mutex_lock(&data->print);
 	gettimeofday (&end, NULL);
 	data->elapsed_time = get_time(end);
 	printf("%ld ms | %d died 😵\n", data->elapsed_time, philo->id);
-	pthread_mutex_unlock(&data->mutex);
+	pthread_mutex_unlock(&data->print);
 	end_simulation(data);
 	exit(1);
 }
