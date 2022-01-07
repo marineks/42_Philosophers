@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:21:50 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/06 20:14:16 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:11:57 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,22 @@ void* routine(void *arg)
 	t_philo			*philo;
 	int				i;
 
-	i = 1;
 	philo = arg;
-
-	printf("bonjour\n");
-	printf(" nb de fois où il mange %d\n", philo->data->nb_times_must_eat);
-	while (philo->is_dead == false || i <= philo->data->nb_times_must_eat)
+	// pthread_mutex_lock(&philo->data->loop);
+	i = 0;
+	// printf("nb times eat : %d | id philo : %d\n", philo->data->nb_times_must_eat, philo->id);
+	while (i < 3 || philo->is_dead == false || i <= philo->data->nb_times_must_eat)
 	{
-		// printf("numero du philo : %d | nb de fois où il mange %d\n", philo->id, philo->data->nb_times_must_eat);
-		// if (data->philo_struct->has_eaten == false)
+		usleep(50000);
+		printf(" DEDANS nb times eat : %d | id philo : %d\n", philo->data->nb_times_must_eat, philo->id);
+		// if (philo->id == 0)
+		// 	printf("Je suis le 1er thread : %d\n", (philo->id));
+		// else if (philo->id == 1)
+		// 	printf("Thread 2 : %d\n", (philo->id));
+		// else
+		// 	printf("id de merde: %d | avec = 1 = %d\n", philo->id, philo->id);
+		// printf("numero du philo : %d\n", philo->id + 1);
+		if (philo->has_eaten == false)
 			make_philo_eat(philo);
 		// else if (data->philo_struct->has_eaten == true)
 		// 	make_philo_sleep(data->philo_struct, data);
@@ -42,8 +49,11 @@ void* routine(void *arg)
 		// 	end_simulation(data);
 		// 	exit(1);
 		// }
+		if (i == philo->data->nb_times_must_eat)
+			return (0);
 		printf("le i de la boucle grr : %d\n", i);
 		i++;
 	}
+	// pthread_mutex_unlock(&philo->data->loop);
 	return (SUCCESS);
 }

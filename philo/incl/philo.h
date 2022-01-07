@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/06 20:13:01 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/07 23:03:41 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_times_must_eat;
-	pthread_t		*philo;
+	pthread_t		*philo_thr;
 	pthread_mutex_t	print;
+	pthread_mutex_t	loop;
 	// pthread_mutex_t	*forks;
 	long			elapsed_time;
 
