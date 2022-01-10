@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:05:27 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/06 17:22:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:59:30 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@
 **	- Set the bool "has slept" to true.
 **	- Use of a mutex to prevent data race
 */
-void	make_philo_sleep(t_philo *philo, t_data *data)
+void	make_philo_sleep(t_philo *philo)
 {
-	struct timeval	end;
-	
-	pthread_mutex_lock(&data->print);
-	usleep(data->time_to_sleep * 1000);
-    gettimeofday(&end, NULL);
-	data->elapsed_time = get_time(end) - data->elapsed_time;
-	printf("%ld ms | %d is sleeping 😪\n", data->elapsed_time, philo->id);
+	philo->data->elapsed_time = get_time() - philo->data->start_time;
+	pthread_mutex_lock(&philo->data->print);
+	printf("%ld ms | %d is sleeping 😪\n", philo->data->elapsed_time, philo->id + 1);
 	philo->has_slept = true;
-	pthread_mutex_unlock(&data->print);
+	pthread_mutex_unlock(&philo->data->print);
+	usleep(philo->data->time_to_sleep * 1000);
 }

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:45:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/07 23:04:17 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:44:37 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ int	create_threads(t_data *data)
 	data->philo_thr = ft_calloc(data->nb_of_philos, sizeof(pthread_t));
 	while (i < data->nb_of_philos)
 	{
-		printf("Le i : %d\n", i);
 		philo_struct[i].data = data;
 		philo_struct[i].id = i;
 		init_one_philo(philo_struct + i, data->philo_thr[i], i);
-		printf("MAIN BOUCLE: id du philo : %d\n", philo_struct[i].id);
 		if (pthread_create(&data->philo_thr[i], NULL, &routine, &philo_struct[i]) != SUCCESS)
 			return (FAILURE);
-		printf("Thread created\n");
 		i++;
 	}
 	i = 0;
@@ -36,7 +33,6 @@ int	create_threads(t_data *data)
 	{
 		if (pthread_join(data->philo_thr[i], NULL) != SUCCESS)
 			return (FAILURE);
-		printf("Thread joined\n");
 		i++;
 	}
 	return (SUCCESS);

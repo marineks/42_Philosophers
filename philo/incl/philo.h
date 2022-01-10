@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/07 23:03:41 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:55:20 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef struct s_data
 	pthread_mutex_t	print;
 	pthread_mutex_t	loop;
 	// pthread_mutex_t	*forks;
-	long			elapsed_time;
+	long int		elapsed_time;
+	long int		start_time;
 
 }				t_data;
 
@@ -65,12 +66,13 @@ int			create_threads(t_data *data);
 void		init_one_philo(t_philo *philo, pthread_t philo_thr, int id);
 
 void		*routine();
-long int	get_time(struct timeval time);
+long int	get_time(void);
+// long int	get_time(struct timeval time);
 void		end_simulation(t_data *data);
-void		stop_simulation(t_data *data, t_philo *philo);
+void		stop_simulation(t_philo *philo);
 
-void		make_philo_think(t_philo *philo, t_data *data);
-void		make_philo_sleep(t_philo *philo, t_data *data);
+void		make_philo_think(t_philo *philo);
+void		make_philo_sleep(t_philo *philo);
 void		make_philo_eat(t_philo *philo);
 void		reset_status(t_philo *philo);
 

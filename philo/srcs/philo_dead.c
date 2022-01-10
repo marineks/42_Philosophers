@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/06 17:22:47 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:53:16 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,12 @@
 **	- Then it destroys the mutex, frees the allocated ressources and
 **	  exits the program.
 */
-void	stop_simulation(t_data *data, t_philo *philo)
+void	stop_simulation(t_philo *philo)
 {
-	struct timeval	end;
-	
-	pthread_mutex_lock(&data->print);
-	gettimeofday (&end, NULL);
-	data->elapsed_time = get_time(end);
-	printf("%ld ms | %d died 😵\n", data->elapsed_time, philo->id);
-	pthread_mutex_unlock(&data->print);
-	end_simulation(data);
+	philo->data->elapsed_time = get_time();
+	pthread_mutex_lock(&philo->data->print);
+	printf("%ld ms | %d died 😵\n", philo->data->elapsed_time, philo->id);
+	pthread_mutex_unlock(&philo->data->print);
+	end_simulation(philo->data);
 	exit(1);
 }
