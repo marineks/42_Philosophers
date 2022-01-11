@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2022/01/04 17:35:30 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/11 17:40:20 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRCS_DIR = ./srcs/
 SRCS = utils/ft_atoi.c \
 	utils/ft_calloc.c \
 	init_philos.c \
+	init_forks.c \
 	create_threads.c \
 	get_time.c \
 	philo_eat.c \

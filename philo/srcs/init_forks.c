@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_forks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 18:51:17 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 17:35:47 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/01/11 18:00:13 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-int	main(int ac, char **argv)
+void	init_forks(t_data *data)
 {
-	t_data			data;
+	int i;
 
-	if (ac != 5 && ac != 6)
+	data->forks = ft_calloc(data->nb_of_philos, sizeof(pthread_mutex_t));
+	i = 0;
+	while (i < data->nb_of_philos)
 	{
-		printf("\033[48;5;57m%s\033[0;0m", ERRUSAGE);
-		exit(1);
+		pthread_mutex_init(&data->forks[i], NULL);
+		printf("Fork num %d created\n", i);
+		i++;
 	}
-	else
-	{
-		init_simulation(&data, argv);
-		create_threads(&data);
-		end_simulation(&data);
-	}
-	return (SUCCESS);
+}
+
+void	attribute_forks(t_data *data, char fork)
+{
+	
 }
