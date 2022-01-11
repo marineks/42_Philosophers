@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 18:00:13 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:01:35 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_forks(t_data *data)
 	}
 }
 
-void	attribute_forks(t_data *data, char fork)
+pthread_mutex_t	attribute_forks(t_data *data, char fork)
 {
 	
 }

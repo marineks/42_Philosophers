@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 18:00:24 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:02:06 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ typedef struct s_philo
 /*
 **		SRCS
 */
-void		init_simulation(t_data *data, char **argv);
-void		init_forks(t_data *data);
-void		attribute_forks(t_data *data, char fork);
-int			create_threads(t_data *data);
-t_philo		init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i);
+void				init_simulation(t_data *data, char **argv);
+void				init_forks(t_data *data);
+pthread_mutex_t		attribute_forks(t_data *data, char fork);
+int					create_threads(t_data *data);
+t_philo				init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i);
 
-void		*routine();
-long int	get_time(void);
-void		end_simulation(t_data *data);
-void		stop_simulation(t_philo *philo);
+void				*routine();
+long int			get_time(void);
+void				end_simulation(t_data *data);
+void				stop_simulation(t_philo *philo);
 
-void		make_philo_think(t_philo *philo);
-void		make_philo_sleep(t_philo *philo);
-void		make_philo_eat(t_philo *philo);
-void		reset_status(t_philo *philo);
+void				make_philo_think(t_philo *philo);
+void				make_philo_sleep(t_philo *philo);
+void				make_philo_eat(t_philo *philo);
+void				reset_status(t_philo *philo);
 
 /*
 **		UTILS
 */
-int			ft_atoi(const char *str);
-void		ft_bzero(void *s, size_t n);
-void		*ft_memset(void *b, int c, size_t len);
-void		*ft_calloc(size_t count, size_t size);
+int					ft_atoi(const char *str);
+void				ft_bzero(void *s, size_t n);
+void				*ft_memset(void *b, int c, size_t len);
+void				*ft_calloc(size_t count, size_t size);
 
 #endif
