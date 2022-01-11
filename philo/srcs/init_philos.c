@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 10:17:00 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 18:00:03 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/11 21:58:46 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_philo	init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i)
 	philo.has_thought = false;
 	philo.id = i;
 	philo.data = data;
-	philo.left_fork = attribute_forks(data, 'L');
-	philo.right_fork = attribute_forks(data, 'R');
+	philo.left_fork = attribute_forks(data, 'L', i);
+	philo.right_fork = attribute_forks(data, 'R', i);
 	return (philo);
 }

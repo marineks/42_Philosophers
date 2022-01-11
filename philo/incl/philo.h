@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 18:02:06 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/11 21:42:06 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_philo
 	_Bool			has_slept;
 	_Bool			has_thought;
 	int				id;
-	pthread_mutex_t	left_fork;
-	pthread_mutex_t	right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }				t_philo;
 
 /*
@@ -64,7 +64,7 @@ typedef struct s_philo
 */
 void				init_simulation(t_data *data, char **argv);
 void				init_forks(t_data *data);
-pthread_mutex_t		attribute_forks(t_data *data, char fork);
+pthread_mutex_t		*attribute_forks(t_data *data, char fork, int i);
 int					create_threads(t_data *data);
 t_philo				init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i);
 

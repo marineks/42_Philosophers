@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 18:01:35 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/11 21:57:40 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,23 @@ void	init_forks(t_data *data)
 	}
 }
 
-pthread_mutex_t	attribute_forks(t_data *data, char fork)
+/*
+**	 Every philosopher has one fork but needs two to eat. As such they need
+**	 to steal their neighbour's fork. 
+**	 In this function, the left fork (L) is the one the philo has.
+**	 Therefore, the right fork (R) is going to be the next philo's. (i + 1)
+**	 In the event where it is the last philo, there is no "i + 1", so it
+**	 will take the first philo's fork (aka full circle).
+*/
+pthread_mutex_t	*attribute_forks(t_data *data, char fork, int i)
 {
-	
+	if (fork == 'L')
+		return (&data->forks[i]);
+	else
+	{
+		if (i + 1 == data->nb_of_philos)
+			return (&data->forks[0]);
+		else
+			return (&data->forks[i + 1]);
+	}
 }
