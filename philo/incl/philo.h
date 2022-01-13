@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 14:34:12 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:05:07 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 
 # define SUCCESS 0
 # define FAILURE -1
+# define GREEN "\033[0;32m"
+# define PURPLE "\033[0;35m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[0;36m"
+# define RESET "\033[0m"
 # define ERRUSAGE "Correct usage is : \
 	./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> \
 	[number_of_times_each_philosopher_must_eat]\n"
@@ -41,8 +46,10 @@ typedef struct s_data
 	pthread_t		*philo_thr;
 	pthread_mutex_t	print;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	death;
 	long int		elapsed_time;
 	long int		start_time;
+	_Bool			someone_died;
 
 }				t_data;
 
@@ -55,7 +62,8 @@ typedef struct s_philo
 	_Bool			has_slept;
 	_Bool			has_thought;
 	int				id;
-	int				nb_times_must_eat;
+	int				nb_meals_to_eat;
+	long int		last_meal_eaten;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 }				t_philo;
@@ -79,10 +87,13 @@ void				make_philo_sleep(t_philo *philo);
 void				make_philo_eat(t_philo *philo);
 void				reset_status(t_philo *philo);
 
+int					monitor_death(t_data *data);
+
 /*
 **		UTILS
 */
 long int			get_time(void);
+void				print_status(t_philo *philo, char *str, char *color);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *b, int c, size_t len);

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:51:17 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 13:57:49 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:01:20 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **argv)
 	{
 		init_simulation(&data, argv);
 		create_threads(&data);
+		// monitor_death(&data);
 		join_threads(&data);
 		end_simulation(&data);
 	}

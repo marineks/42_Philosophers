@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2022/01/13 14:32:55 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/13 16:12:01 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ SRCS = utils/ft_atoi.c \
 	end_simulation.c \
 	routine/routine.c \
 	routine/join_threads.c \
+	routine/check_death.c \
+	utils/print_status.c
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
 # /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -pthread -g #-MMD -g -fsanitize=thread
+CFLAGS = -Wall -Werror -Wextra -pthread  #-MMD -g -fsanitize=thread -g
 IFLAGS:= -I ./incl
 
 # /* ~~~~~~~ OTHER ~~~~~~~ */

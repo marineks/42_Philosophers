@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_sleep.c                                      :+:      :+:    :+:   */
+/*   check_death.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 12:05:27 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 17:28:44 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/01/13 14:43:50 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/01/13 17:24:37 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/philo.h"
 
 /*
-** This function :
-**	- Makes one philosopher sleep for <time_to_sleep> milliseconds;
-**	- Usleep * 1000 to convert in milliseconds;
-**	- Displays the time with the corresponding philo;
-**	- Set the bool "has slept" to true.
-**	- Use of a mutex to prevent data race
+*	As the philosophers are not allowed to communicate with each other,
+*	we must check the eventuality of their death in the main thread.
 */
-void	make_philo_sleep(t_philo *philo)
+int	monitor_death(t_data *data)
 {
-	print_status(philo, "is sleeping 😪", BLUE);
-	// philo->has_slept = true;
-	usleep(philo->data->time_to_sleep * 1000);
+	// int	i;
+
+	// i = 0;
+	while (1)
+	{
+		if (data->someone_died == true)
+			return (FAILURE);
+		// i++;
+		// if (i == data->nb_of_philos)
+		// 	i = 0;
+	}
+	return (SUCCESS);
 }
