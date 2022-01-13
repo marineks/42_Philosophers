@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:05:21 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 17:33:15 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:08:05 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 /*
 **	Each philosopher must eat in order to stay alive.
 **	In this function :
-**	- I used a mutex 
+**	- I used two mutexes for each fork and one for the print (in print status)
+**	- To prevent deadlock situations with the mutexes, the "even id" philo
+**		must take his left fork first while the "odd id" one will take his
+**		right fork first. According to the design of the table, they will
+**		therefore try to take the same fork. If one is already taken,
+**		the other philo will not be able to pick it up = no deadlock.
+**	- I print the status ("is eating...")
+**	- The philosopher eats for <time_to_eat> milliseconds;
 */
-
 void	make_philo_eat(t_philo *philo)
 { 
 	if (philo->id % 2 == 0)
@@ -35,7 +41,9 @@ void	make_philo_eat(t_philo *philo)
 		print_status(philo, "has taken the left fork", GREEN);
 	}
 	print_status(philo, "is eating 🤤", PURPLE);
+	philo->last_meal_eaten = get_time();
 	usleep(philo->data->time_to_eat * 1000);
+	philo->nb_meals_to_eat--;
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_unlock(philo->left_fork);
@@ -47,7 +55,3 @@ void	make_philo_eat(t_philo *philo)
 		pthread_mutex_unlock(philo->left_fork);
 	}
 }
-
-// philo->has_eaten = true;
-// philo->nb_times_must_eat--;
-// printf("Le philo %d a mangé %d fois.\n", philo->id, philo->nb_times_must_eat);

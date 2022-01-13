@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 16:05:07 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:14:29 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_data
 	long int		elapsed_time;
 	long int		start_time;
 	_Bool			someone_died;
+	// struct s_philo	*philo;
 
 }				t_data;
 
