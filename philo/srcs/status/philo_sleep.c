@@ -6,11 +6,11 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:05:27 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/10 15:59:30 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:30:19 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/philo.h"
+#include "../../incl/philo.h"
 
 /*
 ** This function :
@@ -24,7 +24,7 @@ void	make_philo_sleep(t_philo *philo)
 {
 	philo->data->elapsed_time = get_time() - philo->data->start_time;
 	pthread_mutex_lock(&philo->data->print);
-	printf("%ld ms | %d is sleeping 😪\n", philo->data->elapsed_time, philo->id + 1);
+	printf("\033[0;36m%ld ms | %d is sleeping 😪\n\033[0m", philo->data->elapsed_time, philo->id + 1);
 	philo->has_slept = true;
 	pthread_mutex_unlock(&philo->data->print);
 	usleep(philo->data->time_to_sleep * 1000);

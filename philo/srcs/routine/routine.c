@@ -6,11 +6,11 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:21:50 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/10 16:04:23 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:29:58 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/philo.h"
+#include "../../incl/philo.h"
 
 void* routine(void *arg)
 {
@@ -18,31 +18,25 @@ void* routine(void *arg)
 	int				i;
 
 	philo = arg;
-	// pthread_mutex_lock(&philo->data->loop);
 	i = 0;
-	while (philo->is_dead == false || i <= philo->data->nb_times_must_eat)
+	if (philo->id % 2 == 0)
+		usleep(10000);
+	while (i <= philo->data->nb_times_must_eat)
 	{
+		// printf("Le philo %d a mangé %d fois. Il reste %d routines\n", \
+			// philo->id, philo->nb_times_must_eat, philo->data->nb_times_must_eat);
 		if (philo->has_eaten == false)
 			make_philo_eat(philo);
-		else if (philo->has_eaten == true)
+		else if (philo->has_eaten == true && philo->has_slept == false)
 			make_philo_sleep(philo);
-		else if (philo->has_slept == true)
+		else if (philo->has_slept == true && philo->has_thought== false)
 			make_philo_think(philo);
-		else if (philo->has_eaten == true \
-			&& philo->has_slept == true \
+		else if (philo->has_eaten == true && philo->has_slept == true \
 			&& philo->has_thought == true)
 			reset_status(philo);
-		if (philo->is_dead == true) // Probleme : prend trop de tps, à optimiser /!\.
-			stop_simulation(philo);
-		if (i == philo->data->nb_times_must_eat)
-		{
-			end_simulation(philo->data);
-			exit(1);
-		}
-		if (i == philo->data->nb_times_must_eat)
-			return (0);
+		// if (i == philo->data->nb_times_must_eat)
+		// 	return (SUCCESS);
 		i++;
 	}
-	// pthread_mutex_unlock(&philo->data->loop);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2022/01/11 17:40:20 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/13 14:32:55 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,23 +14,24 @@
 SRCS_DIR = ./srcs/
 SRCS = utils/ft_atoi.c \
 	utils/ft_calloc.c \
-	init_philos.c \
-	init_forks.c \
-	create_threads.c \
-	get_time.c \
-	philo_eat.c \
-	philo_sleep.c \
-	philo_think.c \
-	philo_reset.c \
-	philo_dead.c  \
+	init/init_philos.c \
+	init/init_forks.c \
+	routine/create_threads.c \
+	utils/get_time.c \
+	status/philo_eat.c \
+	status/philo_sleep.c \
+	status/philo_think.c \
+	status/philo_reset.c \
+	status/philo_dead.c  \
 	end_simulation.c \
-	routine.c \
+	routine/routine.c \
+	routine/join_threads.c \
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
 # /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -pthread -g#-MMD -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g #-MMD -g -fsanitize=thread
 IFLAGS:= -I ./incl
 
 # /* ~~~~~~~ OTHER ~~~~~~~ */

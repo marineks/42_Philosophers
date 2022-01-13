@@ -6,11 +6,11 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/11 21:57:40 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:29:52 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/philo.h"
+#include "../../incl/philo.h"
 
 void	init_forks(t_data *data)
 {

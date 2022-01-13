@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_reset.c                                      :+:      :+:    :+:   */
+/*   join_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 14:46:48 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/03 15:47:15 by msanjuan         ###   ########.fr       */
+/*   Created: 2022/01/13 13:57:01 by msanjuan          #+#    #+#             */
+/*   Updated: 2022/01/13 14:33:33 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/philo.h"
+#include "../../incl/philo.h"
 
-/*
-**	When a loop is completed, this function resets all the actions a philosopher
-**	can make to "false".
-*/
-void	reset_status(t_philo *philo)
+int	join_threads(t_data *data)
 {
-	philo->has_eaten = false;
-	philo->has_slept = false;
-	philo->has_thought = false;
+	int	i;
+
+	i = 0;
+	while (i < data->nb_of_philos)
+	{
+		if (pthread_join(data->philo_thr[i], NULL) != SUCCESS)
+			return (FAILURE);
+		i++;
+	}
+	return (SUCCESS);
 }

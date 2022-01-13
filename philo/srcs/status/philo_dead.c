@@ -6,11 +6,11 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/10 15:53:16 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/12 18:30:02 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/philo.h"
+#include "../../incl/philo.h"
 
 /*
 **	This function stops and ends the simulation:
