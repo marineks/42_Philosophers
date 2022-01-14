@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:58:27 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 18:26:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_philo
 /*
 **		SRCS
 */
+int					check_input(int ac, char **args);
 void				init_simulation(t_data *data, char **argv);
 void				init_forks(t_data *data);
 pthread_mutex_t		*attribute_forks(t_data *data, char fork, int i);
@@ -97,6 +98,7 @@ int					is_alive(t_philo *philo);
 */
 long int			get_time(void);
 void				print_status(t_philo *philo, char *str, char *color);
+int					ft_is_digit(char *str);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
