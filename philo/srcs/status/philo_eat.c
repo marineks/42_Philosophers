@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:05:21 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:22:40 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:55:32 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	make_philo_eat(t_philo *philo)
 	// 	print_status(philo, "has taken the left fork", GREEN);
 	// }
 	pthread_mutex_lock(philo->left_fork);
-	print_status(philo, "has taken the left fork", GREEN);
+	print_status(philo, "has taken a fork", GREEN);
 	pthread_mutex_lock(philo->right_fork);
-	print_status(philo, "has taken the right fork", GREEN);
+	print_status(philo, "has taken a fork", GREEN);
 
 	
 	print_status(philo, "is eating 🤤", PURPLE);

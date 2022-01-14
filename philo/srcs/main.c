@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:51:17 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 19:00:02 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:46:44 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int ac, char **argv)
 	{
 		init_simulation(&data, argv);
 		create_threads(&data);
-		monitor_death(&data);
-		// printf("ET CEST LA MORT, QUI T'A ASSASSINEE, MARCIAAAAAA\n");
+		if (data.nb_of_philos > 1)
+			monitor_death(&data);
 		join_threads(&data);
 		end_simulation(&data);
 	}

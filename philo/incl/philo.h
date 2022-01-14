@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:22:27 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 17:58:27 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_data
 	pthread_mutex_t	death;
 	pthread_mutex_t	last_meal;
 	pthread_mutex_t	all_meals;
-	long int		elapsed_time;
 	long int		start_time;
 	_Bool			someone_died;
 	_Bool			option_on;
@@ -65,9 +64,6 @@ typedef struct s_philo
 	t_data			*data;
 	pthread_t		thread;
 	_Bool			is_dead;
-	_Bool			has_eaten;
-	_Bool			has_slept;
-	_Bool			has_thought;
 	int				id;
 	int				nb_meals_to_eat;
 	long int		last_meal_eaten;
@@ -82,20 +78,20 @@ void				init_simulation(t_data *data, char **argv);
 void				init_forks(t_data *data);
 pthread_mutex_t		*attribute_forks(t_data *data, char fork, int i);
 int					create_threads(t_data *data);
-int					join_threads(t_data *data);
 t_philo				init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i);
+int					join_threads(t_data *data);
 
 void				*routine();
+void				manage_one_philo(t_philo *philo);
 void				end_simulation(t_data *data);
 void				stop_simulation(t_philo *philo);
 
 void				make_philo_think(t_philo *philo);
 void				make_philo_sleep(t_philo *philo);
 void				make_philo_eat(t_philo *philo);
-void				reset_status(t_philo *philo);
 
 int					monitor_death(t_data *data);
-int	is_alive(t_philo *philo);
+int					is_alive(t_philo *philo);
 /*
 **		UTILS
 */

@@ -6,7 +6,7 @@
 #    By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 17:47:21 by msanjuan          #+#    #+#              #
-#    Updated: 2022/01/14 17:27:03 by msanjuan         ###   ########.fr        #
+#    Updated: 2022/01/14 17:57:26 by msanjuan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,13 @@ SRCS = utils/ft_atoi.c \
 	status/philo_eat.c \
 	status/philo_sleep.c \
 	status/philo_think.c \
-	status/philo_reset.c \
 	status/philo_dead.c  \
 	end_simulation.c \
 	routine/routine.c \
 	routine/join_threads.c \
 	routine/check_death.c \
-	utils/print_status.c
+	utils/print_status.c \
+	routine/one_philo.c
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 
