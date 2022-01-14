@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:43:50 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:26:51 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 19:27:37 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_time_of_death(struct s_philo *philo)
 
 	current = get_time();
 	pthread_mutex_lock(&philo->data->last_meal);
-	if (current - philo->last_meal_eaten > philo->data->time_to_die) // DATA RACE LA
+	if (current - philo->last_meal_eaten > philo->data->time_to_die)
 	{
 		pthread_mutex_lock(&philo->data->death);
 		philo->data->someone_died = true;
@@ -43,8 +43,13 @@ int	monitor_death(t_data *data)
 	usleep((data->time_to_die * 1000) / 2);
 	while (1)
 	{
-		if (data->count_meals == data->total_meal) // DATA RACE LA
+		pthread_mutex_lock(&data->all_meals);
+		if (data->count_meals == data->total_meal)
+		{
 			return (SUCCESS);
+			pthread_mutex_unlock(&data->all_meals);
+		}
+		pthread_mutex_unlock(&data->all_meals);
 		check_time_of_death(&(data->philo[i]));
 		if (data->someone_died == true)
 			return (FAILURE);

@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 10:17:00 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:36:59 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 19:06:21 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_simulation(t_data *data, char **argv)
 	else
 	{
 		data->option_on = false;
+		data->total_meal = -1;
 		data->nb_times_must_eat = -1;
 	}
 	data->start_time = get_time();
