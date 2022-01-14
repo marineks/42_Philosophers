@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/12 18:29:52 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/14 11:41:29 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_forks(t_data *data)
 	while (i < data->nb_of_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		printf("Fork num %d created\n", i);
+		// printf("Fork num %d created\n", i);
 		i++;
 	}
 }

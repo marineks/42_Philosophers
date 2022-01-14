@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:45:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 13:56:56 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:20:43 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	create_threads(t_data *data)
 			return (FAILURE);
 		i++;
 	}
+	data->philo = philo_struct;
 	return (SUCCESS);
 }

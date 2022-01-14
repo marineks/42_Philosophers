@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/12 18:30:02 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:40:42 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 **	- Then it destroys the mutex, frees the allocated ressources and
 **	  exits the program.
 */
-void	stop_simulation(t_philo *philo)
+int	is_alive(t_philo *philo)
 {
-	philo->data->elapsed_time = get_time();
-	pthread_mutex_lock(&philo->data->print);
-	printf("%ld ms | %d died 😵\n", philo->data->elapsed_time, philo->id);
-	pthread_mutex_unlock(&philo->data->print);
-	end_simulation(philo->data);
-	exit(1);
+	pthread_mutex_lock(&philo->data->death);
+	if (philo->data->someone_died == true)
+	{
+		pthread_mutex_unlock(&philo->data->death);
+		return (FAILURE);
+	}
+	pthread_mutex_unlock(&philo->data->death);
+	return (SUCCESS);
 }
