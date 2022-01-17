@@ -6,17 +6,16 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:08:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 18:40:42 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:04:04 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/philo.h"
 
 /*
-**	This function stops and ends the simulation:
-**	- First it prints the time of death (protected by a mutex)
-**	- Then it destroys the mutex, frees the allocated ressources and
-**	  exits the program.
+**	This function is basically a check of the boolean "someone_died"
+**	but because this is a ressource which can be accessed by all of the 
+**	threads, there must be a mutex to prevent data races.
 */
 int	is_alive(t_philo *philo)
 {
