@@ -6,12 +6,15 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 15:40:41 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 19:26:37 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:01:42 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
+/*
+**	This function destroys the mutexes and frees the allocated ressources
+*/
 void	end_simulation(t_data *data)
 {
 	int	i;
