@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:43:50 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 19:27:37 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:32:15 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_time_of_death(struct s_philo *philo)
 		philo->data->someone_died = true;
 		pthread_mutex_unlock(&philo->data->death);
 		pthread_mutex_lock(&philo->data->print);
-		printf("%s%ld ms \t | %d died 😵\n%s", RED,\
+		printf("%s%ld ms \t | %d died 😵\n%s", RED, \
 			(current - philo->data->start_time), philo->id + 1, RESET);
 		pthread_mutex_unlock(&philo->data->print);
 	}

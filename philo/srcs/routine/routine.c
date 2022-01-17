@@ -6,13 +6,13 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:21:50 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 17:58:37 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:34:23 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incl/philo.h"
 
-void* routine(void *arg)
+void	*routine(void *arg)
 {
 	t_philo	*philo;
 
@@ -22,10 +22,10 @@ void* routine(void *arg)
 		if (philo->id % 2 == 0)
 			usleep(10000);
 		while ((is_alive(philo) == SUCCESS
-			&& philo->data->option_on == false)
+				&& philo->data->option_on == false)
 			|| (is_alive(philo) == SUCCESS
-			&& philo->nb_meals_to_eat
-			&& philo->data->option_on == true))
+				&& philo->nb_meals_to_eat
+				&& philo->data->option_on == true))
 		{
 			make_philo_eat(philo);
 			make_philo_sleep(philo);

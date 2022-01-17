@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:45:22 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 19:30:14 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:32:49 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	create_threads(t_data *data)
 		return (FAILURE);
 	while (i < data->nb_of_philos)
 	{
-		philo_struct[i] = init_one_philo(philo_struct[i],\
+		philo_struct[i] = init_one_philo(philo_struct[i], \
 		data, data->philo_thr[i], i);
-		if (pthread_create(&data->philo_thr[i], NULL, &routine,\
+		if (pthread_create(&data->philo_thr[i], NULL, &routine, \
 		&philo_struct[i]) != SUCCESS)
 			return (FAILURE);
 		i++;
