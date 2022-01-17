@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:30:35 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 19:29:38 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:29:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_forks(t_data *data)
 {
-	int i;
+	int	i;
 
 	data->forks = ft_calloc(data->nb_of_philos, sizeof(pthread_mutex_t));
 	if (!data->forks)
@@ -23,7 +23,6 @@ void	init_forks(t_data *data)
 	while (i < data->nb_of_philos)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);
-		// printf("Fork num %d created\n", i);
 		i++;
 	}
 }
