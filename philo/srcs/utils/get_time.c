@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 11:46:46 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/13 14:32:11 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:36:31 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long int	get_time(void)
 {
-	long int	timestamp;
-	struct timeval time;
+	long int		timestamp;
+	struct timeval	time;
 
 	timestamp = 0;
 	gettimeofday(&time, NULL);
