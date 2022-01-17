@@ -6,7 +6,7 @@
 /*   By: msanjuan <msanjuan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:52:39 by msanjuan          #+#    #+#             */
-/*   Updated: 2022/01/14 18:26:48 by msanjuan         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:43:48 by msanjuan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@
 # define BLUE "\033[0;36m"
 # define RED "\033[4;31m"
 # define RESET "\033[0m"
-# define ERRUSAGE "Correct usage is : \
-	./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> \
+# define ERRUSAGE "Correct usage is : ./philo \
+	<number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> \
 	[number_of_times_each_philosopher_must_eat]\n"
-
 
 /*
 **	STRUCTURES
@@ -79,10 +78,11 @@ void				init_simulation(t_data *data, char **argv);
 void				init_forks(t_data *data);
 pthread_mutex_t		*attribute_forks(t_data *data, char fork, int i);
 int					create_threads(t_data *data);
-t_philo				init_one_philo(t_philo philo, t_data *data, pthread_t philo_thr, int i);
+t_philo				init_one_philo(t_philo philo, t_data *data, \
+					pthread_t philo_thr, int i);
 int					join_threads(t_data *data);
 
-void				*routine();
+void				*routine(void);
 void				manage_one_philo(t_philo *philo);
 void				end_simulation(t_data *data);
 void				stop_simulation(t_philo *philo);
